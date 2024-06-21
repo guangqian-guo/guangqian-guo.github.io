@@ -1,1 +1,1 @@
-[Welcome to Guangqian's HomePage](https://guangqian-guo.github.io/).
+Welcome to Guangqian's HomePage.
