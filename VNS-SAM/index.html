@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<!--   <meta name="description"
+        content="HyperNeRF handles topological variations by modeling a family of shapes in a higher-dimensional space, thereby producing more realistic renderings and more accurate geometric reconstructions.">
+  <meta name="keywords" content="HyperNeRF, Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="./static/images/thumbnail.png"/>
+  <link rel="image_src" href="./static/images/thumbnail.png">
+  <link rel="icon"
+        type="image/x-icon"
+        href="./static/images/favicon.ico"/> -->
+
+  <title> 
+    Boosting Segment Anything Model to Generalize Visually Non-Salient Scenarios
+    </title>
+
+
+    <style>
+        .img-container {
+            text-align: center; /* Center the text and images */
+            margin-bottom: 20px; /* Adds some space between the image groups */
+        }
+
+        .image-with-caption {
+            display: inline-block; /* Allows multiple elements side by side */
+            margin: 10px; /* Adds some space around each image and caption */
+        }
+
+        .custom-gif {
+            width: 200px; /* Adjust based on your preference */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 10px; /* Space between caption and image */
+        }
+
+        .caption {
+            font-weight: bold; /* Optional: makes the caption text bold */
+        }
+    </style>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDF010G6PN"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EDF010G6PN');
+
+  </script>
+
+  <script type="module"
+          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick-theme.css"/>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+<!--       <div class="columns is-centered">
+        <div class="column is-4 has-text-centered">
+          <img src="static/images/logo.svg" alt="HyperNeRF"/>
+        </div>
+      </div> -->
+      <div class="container has-text-centered">
+        <h1 class="title is-1 publication-title">
+          <h1 style="color: red"><font size="7">VNS-SAM </font> </h1> <font size="6">Boosting Segment Anything Model to Generalize to Visually Non-Salient Scenarios</font>
+        </h1>
+        <div class="is-size-5 publication-authors">
+          <div class="author-block"><a href="https://guangqian-guo.github.io"> Guangqian Guo</a> <sup> 1</sup></div>
+          <div class="author-block"> Pengfei Chen <sup> 2</sup></div>
+          <div class="author-block"><a href="https://www.guoyongcs.com"> Yong Guo</a> <sup> 3</sup></div>
+          <div class="author-block">  Huafeng Chen <sup> 1</sup></div>
+          <div class="author-block"> Boqiang Zhang <sup> 4</sup></div>
+          <div class="author-block"><a href="https://teacher.nwpu.edu.cn/2018010158.html"> Shan Gao</a> <sup> 1</sup></div>
+
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"><sup>1</sup>Northwestern Polytechnical University,</span>
+          <span class="author-block"><sup>2</sup>University of Chinese Academic of Sciences,</span>
+          <span class="author-block"><sup>3</sup>Max Planck Institute for Informatics (MPI-INF),</span>
+          <span class="author-block"><sup>4</sup>University of Science and Technology of China.</span>
+        </div>
+          
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+            <!-- PDF Link. -->
+            <!-- <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/CVPR2024/html/Chen_RobustSAM_Segment_Anything_Robustly_on_Degraded_Images_CVPR_2024_paper.html" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            <span class="link-block">
+                <a href="https://arxiv.org/pdf/2406.09627" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+            </span> -->
+            <span class="link-block">
+              <a href="https://github.com/VNS-SAM/vns-sam" 
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+            <!-- Dataset Link. -->
+            <span class="link-block">
+              <a href="https://github.com/VNS-SAM/vns-sam" 
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="far fa-images"></i>
+                </span>
+                <span>Data</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop"> -->
+<!--       <video id="teaser" autoplay controls muted loop playsinline height="100%">
+        <source src="./static/images/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+<!--       <h2 class="subtitle has-text-centered"> -->
+<!--              <i>RobustSAM</i> outperfroms SAM in various degradations. -->
+<!--         <i>RobustSAM</i> handles topological variations by modeling a
+        family of shapes in a higher-dimensional space, thereby producing more realistic renderings
+        and more accurate geometric reconstructions. -->
+<!--       </h2> -->
+    <!-- </div>
+  </div>
+</section> -->
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+        <img style="width: 100%;" src="./vnssam_file/Fig.1.png"
+             alt="seen-set res."/>
+      </div>
+      <div class="content has-text-justified">
+        <p>
+          A comparison of masks predicted by SAM and VNS-SAM under three typical non-salient scenarios. SAM often struggles when dealing with (a)
+camouflaged objects where the objects perfectly match its surroundings, (b) polyp objects where polyp tissues and normal tissues have the same texture,
+posing challenges to medical image analysis, and (c) objects in low-light conditions where the targets lack significant color contrast with their backgrounds.
+SAM fails to accurately identify object boundaries and complete structures, leading to missing segmentation details and incorrect background predictions. In
+contrast, VNS-SAM can produce more accurate segmentation.
+      </div>
+        
+    </div>
+  </div>
+</section>
+  
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Responsive YouTube Video Embed</title>
+    <style>
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .video-container iframe {
+            width: 100%;
+            max-width: 720px; /* Optional: Set a max-width if you want */
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Awukqkbs6zM?si=vQEW91tN4j_iRJNs" 
+            title="YouTube video player" frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html> -->
+
+
+<!-- <iframe width="560" height="315" 
+  src="https://www.youtube.com/embed/Awukqkbs6zM?si=vQEW91tN4j_iRJNs" 
+  title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  allowfullscreen>
+</iframe> -->
+<!--       </div> -->
+
+
+<!--     </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Segment Anything Model (SAM), known for its remarkable zero-shot segmentation capabilities, has garnered significant attention in the community. Nevertheless, its performance is challenged when dealing with what we refer to
+as visually non-salient scenarios, where there is low contrast between the foreground and background. In these cases, existing methods often cannot capture the accurate contours and fail
+to produce promising segmentation results. In this paper, we propose Visually Non-Salient SAM (VNS-SAM), aiming to enhance SAM's perception of visually non-salient scenarios while preserving its original zero-shot generalizability. We achieve this by effectively exploiting SAM's low-level features through two designs: Mask-Edge Token Interactive
+decoder and Non-Salient Feature Mining module. These designs help the SAM decoder gain a deeper understanding of non-salient characteristics with only marginal parameter increments
+and computational requirements. The additional parameters of VNS-SAM can be optimized within 4 hours on 4x GPUs, demonstrating its feasibility and practicality for typical research
+laboratories. In terms of data, we established VNS-SEG, a unified dataset for various VNS scenarios, with more than 36K images, in contrast to previous single-task adaptations. It is designed to make the model learn more robust VNS features and comprehensively benchmark the model's segmentation performance
+and generalizability on VNS scenarios. Extensive experiments across various VNS segmentation tasks demonstrate the superior performance of VNS-SAM, particularly under zero-shot settings, highlighting its potential for broad real-world applications.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+<!--     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Video</h2>
+        <div class="publication-video">
+          <iframe width="640" height="480" src="https://www.youtube.com/watch?v=bx0He5eE8fE"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<hr/>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">VNS-SAM: Visually Non-Salient Segment Anything Model</h2>
+      <div class="content has-text-justified"> 
+      <p>
+        VNS-SAM contains two key components, i.e., the <b>Mask-Edge Token Interactive (METI)</b> decoder and <b>Non-Salient Feature Mining (NSFM)</b> modules, 
+        which encourage SAM to learn VNS characters. 
+      </div>
+      
+      <div class="content has-text-justified">
+        <h2 class="title is-4">Overview of VNS-SAM.</h2>
+      <div class="has-text-centered">
+<!--         <embed src="./robustsam_file/architecture.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/architecture.png"
+             alt="VNS-SAM architecture."/>
+        <div class="content has-text-justified">
+          <p>
+            Overview of the proposed VNS-SAM. It enhances the SAM's original decoder to a mask-edge token interactive (METI) decoder with the interaction of edge semantics and dual-level decoder layers enhancement. 
+            Second, a lightweight NSFM module is designed to mine the inconspicuous discriminative features from the image encoder layers, which serve as complementary features to the prediction layer. 
+            {During training, the parameters of the pre-trained SAM are frozen and only the newly added parameters in VNS-SAM are trained.} 
+            During inference, VNS-SAM outputs the more precise VNS-mask and the original SAM's outputs.
+            The prompt encoder and prompt tokens are omitted here.
+        </div>
+      </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Overview of the proposed NSFM module.</h3>
+        <!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <div class="has-text-centered">
+          <img style="width: 70%;" src="./vnssam_file/NSFM.png"
+          alt="NSFM."/>
+        <div class="content has-text-justified">
+          <p>
+          Details of Non-Salient Feature Mining (NSFM) module. The multi-level features extracted from the backbone are decomposed into different
+        components. Then, the most informative high-frequency and low-frequency
+        components are selected and multi-level features are aggregated for edge and
+        mask feature extraction.
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">VNS-SEG: Visually Non-Salient Segmentation Dataset</h2>
+      <div class="content has-text-justified">
+        <p>  To enable the segmentation models to effectively learn VNS characters, we meticulously construct a unified dataset: VNS-SEG, for training and benchmarking the performance of the segmentation model on diverse visually non-salient scenarios.       </div>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Data composition of the training set of our VNS-SEG.</h3>
+<!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/trainset.png"
+             alt="seen-set res."/>
+      </div>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Data composition of the eval set of our VNS-SEG.</h3>
+<!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/eval-set.png"
+             alt="unseen-set-results."/>
+      </div>
+        
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <h2 class="title is-3">Results on VNS-SEG Benchmark</h2>
+      <div class="content has-text-justified">
+        <p>  Detailed resuls on VNS-SEG, including seen-set evaluation and unseen-set evaluation. Three types of prompts are used to comprehensively assess the model. 
+          Our models consistently outperform the baseline SAM and other competitors on diverse seen and unseen datasets.   
+      </div>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Results on the Eval-Seen-Set.</h3>
+<!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/seen-set-results.png"
+             alt="seen-set res."/>
+      </div>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Results on the Eval-Unseen-Set.</h3>
+<!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/unseen-set-results.png"
+             alt="unseen-set-results."/>
+      </div>
+      <div class="content has-text-justified">
+        <h3 class="title is-4">Visual Comparisons.</h3>
+<!--       <embed src="./robustsam_file/style-suppresion.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./vnssam_file/vis-results.png"
+             alt="unseen-set-results."/>
+      </div>
+        
+    </div>
+  </div>
+</section>
+<hr/>
+
+
+
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container content is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{chen2024robustsam,
+  author = {Chen, Wei-Ting and Vong, Yu-Jiet and Kuo, Sy-Yen and Ma, Sizhou and Wang, Jian},
+  title = {RobustSAM: Segment Anything Robustly on Degraded Images},
+  journal = {CVPR},
+  issue_date = {2024}
+}</code></pre>
+  </div>
+</section> -->
+
+
+<!-- <section class="section" id="acknowledgements">
+  <div class="container content is-max-desktop">
+    <h2 class="title">Acknowledgements</h2>
+    <p>Special thanks to <a href="https://homes.cs.washington.edu/~holynski/">Aleksander Hołyński</a>,
+      <a href="https://roxanneluo.github.io/">Xuan Luo</a>, and Haley Cho for their support and
+      help with collecting data. Thanks to <a href="https://zhengqili.github.io/">Zhengqi Li</a> and
+      <a href="http://www.oliverwang.info/">Oliver Wang</a> for their help with the NSFF experiments.</p>
+  </div>
+</section> -->
+
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/robustsam/RobustSAM">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/robustsam/RobustSAM" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer> -->
+
+<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+</body>
+</html>
