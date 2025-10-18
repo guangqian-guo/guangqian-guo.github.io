@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement">
+  <meta name="keywords" content="Segment Anything Model, Generative Diffusion, Latent Space Enhancement">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement</title>
+
+  <style>
+    .img-container {
+        text-align: center; /* Center the text and images */
+        margin-bottom: 20px; /* Adds some space between the image groups */
+    }
+
+    .image-with-caption {
+        display: inline-block; /* Allows multiple elements side by side */
+        margin: 10px; /* Adds some space around each image and caption */
+    }
+
+    .custom-gif {
+        width: 200px; /* Adjust based on your preference */
+        height: auto; /* Maintain aspect ratio */
+        margin-top: 10px; /* Space between caption and image */
+    }
+
+    .caption {
+        font-weight: bold; /* Optional: makes the caption text bold */
+    }
+</style>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- 优先加载 MathJax 配置和核心库 -->
+  <script>
+    // 先定义配置，确保加载前已存在
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      startup: {
+        pageReady: function() {
+          return MathJax.startup.defaultPageReady().then(function() {
+            MathJax.typeset(); // 强制渲染
+          });
+        }
+      }
+    };
+  </script>
+  <!-- 加载 MathJax 核心库 -->
+  <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/github-brands-solid.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://guangqian-guo.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://guangqian-guo.github.io/VNS-SAM/">
+            VNS-SAM
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title", style="color: #c03d3e"><font size="7">GleSAM++</font>
+          <h1 class="title is-1 publication-title"><font size="6">Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement</font></h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://guangqian-guo.github.io">Guangqian Guo</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.baidu.com">Second Author</a><sup>2</sup>,</span>
+            <span class="author-block">
+              Third Author<sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://teacher.nwpu.edu.cn/2018010158.html">Shan Gao</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Northwestern Polytechnical University,</span>
+            <span class="author-block"><sup>2</sup>Google Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Guo_Segment_Any-Quality_Images_with_Generative_Latent_Space_Enhancement_CVPR_2025_paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2503.12507"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/guangqian-guo/GleSAM"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/guangqian-guo/GleSAM/blob/main/degraded_utils/README.md"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+
+          <div class="img-container">
+            <div class="image-with-caption">
+                <div class="caption", style="color: #c03d3e">Clear</div>
+                <img class="custom-gif" src="./static/images/clear_SAM_7.gif">
+            </div>
+            <div class="image-with-caption">
+                <div class="caption", style="color: #c03d3e">w/ Gaussian N.</div>
+                <img class="custom-gif" src="./static/images/Gaussian_SAM_1.gif">
+            </div>
+            <div class="image-with-caption">
+                <div class="caption", style="color: #c03d3e">+ Re-sam. N.</div>
+                <img class="custom-gif" src="./static/images/Re-sam_SAM_1.gif">
+            </div>
+            <div class="image-with-caption">
+                <div class="caption", style="color: #c03d3e">+ Noise degree</div>
+                <img class="custom-gif" src="./static/images/Noise_degree_SAM_1.gif">
+            </div>
+          
+        </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="color: #c03d3e">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite their success, Segment Anything Models (SAMs) experience significant performance drops on severely degraded,
+            low-quality images, limiting their effectiveness in real-world scenarios. To address this, we propose
+            <span style="color: #c03d3e;;font-weight: bolder;">GleSAM++</span>,
+            which utilizes <span style="color: #c03d3e;;font-weight: bolder;">G</span>enerative 
+            <span style="color: #c03d3e;;font-weight: bolder;">L</span>atent space 
+            <span style="color: #c03d3e;;font-weight: bolder;">E</span>nhancement to boost robustness on low-quality images, 
+            thus enabling generalization across various image qualities.  Specifically, we adapt the concept of latent diffusion 
+            to SAM-based segmentation frameworks and perform the generative diffusion process in the latent space of SAM to 
+            reconstruct a high-quality representation, thereby improving segmentation. 
+            Additionally, to improve compatibility between the pre-trained diffusion model and the segmentation framework, 
+            we introduce two techniques, <em>i.e.</em>, <span style="color: #c03d3e;;font-weight: bolder;">Feature Distribution Alignment</span> 
+            (FDA) and <span style="color: #c03d3e;;font-weight: bolder;">Channel Replication and Expansion</span> (CRE).
+            However, the above components lack explicit guidance regarding the degree of degradation. 
+            The model is forced to implicitly fit a complex noise distribution that spans conditions from mild noise to severe 
+            artifacts, which substantially increases the learning burden and leads to suboptimal reconstructions.
+            To address this issue, we further introduce a 
+            <span style="color: #c03d3e;;font-weight: bolder;">Degradation-aware Adaptive Enhancement</span> (DAE) 
+            mechanism. The key principle of DAE is to decouple the reconstruction process for arbitrary-quality features into 
+            two stages: degradation-level prediction and degradation-aware reconstruction. This design reduces the optimization 
+            difficulty of the model and consequently enhances the effectiveness of feature reconstruction.
+            Our method can be applied to pre-trained SAM and SAM2 with only minimal additional learnable parameters, allowing 
+            for efficient optimization.
+            We also construct the LQSeg dataset with a greater diversity of degradation types and levels for training and 
+            evaluating the model. Extensive experiments demonstrate that GleSAM significantly improves segmentation robustness 
+            on complex degradations while maintaining generalization to clear images. Furthermore, GleSAM also performs well on 
+            unseen degradations, underscoring the versatility of our approach and dataset. 
+          </p>
+
+          <div style="text-align: center;">
+            <figure style="display: inline-block; max-width: 100%;">
+              <img src="./static/images/1_v2_1.jpg" alt="Pipeline Image" style="max-width: 100%;">
+            </figure>
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-nine-tenths">
+              <div class="content has-text-justified">
+                <p>
+                  The comparison of qualitative results on low-quality images with varying degradation 
+                  levels from an unseen dataset. To generate images with different degradation levels, 
+                  we progressively added Gaussian Noise, Re-sampling Noise, and more severe Gaussian noise 
+                  to an image. Results indicate that the baseline SAM shows limited robustness to degradation. 
+                  Although RobustSAM retains some resilience against simpler degradations, it struggles with more 
+                  complex and unfamiliar degradations. In contrast, our method consistently demonstrates strong 
+                  robustness across images of varying quality.
+                </p>
+                
+              </div>
+            </div>
+          </div> 
+
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <h2 class="title is-3" style="color: #c03d3e">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span style="color: #c03d3e;;font-weight: bolder;">GleSAM++</span> contains two key components, <em>i.e.</em>, 
+            the <span style="color: #c03d3e;;font-weight: bolder;">G</span>enerative & adaptive 
+            <span style="color: #c03d3e;;font-weight: bolder;">L</span>atent space <span style="color: #c03d3e;;font-weight: bolder;">E</span>nhancement 
+            and <span style="color: #c03d3e;;font-weight: bolder;">Degradation-aware Adaptive Enhancement</span>(DAE), which decouples the reconstruction 
+            process for arbitrary-quality features into two stages: degradation-level prediction and degradation-aware reconstruction.
+          </p>
+          <h2 class="title is-4">Overview of GleSAM++</h2>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <figure style="display: inline-block; max-width: 100%;">
+        <img src="./static/images/Method.jpg" alt="Pipeline Image" style="max-width: 100%;">
+      </figure>
+    </div>
+ 
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <div class="content has-text-justified">
+          <p>
+            Given an input image, <span style="color: #c03d3e;;font-weight: bolder;">GleSAM++</span> performs accurate 
+            segmentation through image encoding, generative & adaptive latent space enhancement, and mask decoding. During training, 
+            HQ-LQ image pairs are fed into the frozen image encoder to extract the corresponding HQ and LQ latent features.
+            We then adaptively reconstruct high-quality representations in the SAM's latent space by efficiently fine-tuning 
+            a generative denoising U-Net with LoRA layers. <span style="color: #c03d3e;;font-weight: bolder;">Degradation-aware prediction module</span> 
+            is used to explicitly estimate the degradation level of the input features and uses this information to 
+            dynamically regulate the denoising strength. <span style="color: #c03d3e;;font-weight: bolder;">Latent space alignment</span> 
+            is used to bridge the feature distribution and structural gaps between the pre-trained latent diffusion model and SAM.
+            Subsequently, the decoder is fine-tuned with segmentation loss to align the enhanced latent representations. 
+            Built upon SAMs, GleSAM++ inherits prompt-based segmentation and performs well on images of any quality. 
+          </p>
+          
+        </div>
+      </div>
+    </div> 
+
+  </div>
+    <!--/ Method. -->
+</section>
+
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- DataSet. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <h2 class="title is-3" style="color: #c03d3e">Low-Quality Image Segmentation Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            We construct a comprehensive low-quality image segmentation dataset dubbed <span style="color: #c03d3e;;font-weight: bolder;">LQSeg</span> 
+            that encompasses more complex and multi-level degradations, rather than relying on a single type 
+            of degradation for each image. The dataset is composed of images from several existing datasets with 
+            our synthesized degradations.
+          </p>
+          <h2 class="title is-4">LQ-Seg dataset</h2>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <figure style="display: inline-block; max-width: 100%;">
+        <img src="./static/images/dataset.jpg" alt="Pipeline Image" style="max-width: 100%;">
+      </figure>
+    </div>
+ 
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <div class="content has-text-justified">
+          <p>
+            Examples from the <span style="color: #c03d3e;;font-weight: bolder;">LQ-Seg</span> dataset illustrating images with varying levels of 
+            synthetic degradation: LQ-1, LQ-2, and LQ-3. These samples showcase the progressive 
+            quality deterioration used for evaluating the robustness of segmentation models. 
+          </p>
+          
+        </div>
+      </div>
+    </div> 
+
+  </div>
+    <!--/ Dataset. -->
+</section>
+
+<hr>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Visual. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <h2 class="title is-3" style="color: #c03d3e">Visualizations</h2>
+        <div class="content has-text-justified">
+          <p>
+            Due to the challenging degradations, previous SAM and the enhanced RobustSAM 
+            struggle to segment these objects accurately, resulting in serious detail missing 
+            and erroneous background prediction, showing their limitations. In contrast, <span style="color: #c03d3e;;font-weight: bolder;">GleSAM</span> 
+            and <span style="color: #c03d3e;;font-weight: bolder;">GleSAM++</span> effectively recover finer details and 
+            achieve more precise segmentation results.
+          </p>
+          <h2 class="title is-4">Visual Comparisons</h2>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <figure style="display: inline-block; max-width: 100%;">
+        <img src="./static/images/result_vis_1.jpg" alt="Pipeline Image" style="max-width: 100%;">
+      </figure>
+    </div>
+ 
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-nine-tenths">
+        <div class="content has-text-justified">
+          <p>
+            Visual comparisons on the <span style="color: #c03d3e;;font-weight: bolder;">
+            unseen ECSSD, Robust-Seg, and BDD-10K datasets</span>. 
+            The results demonstrate the superior generalization capability of 
+            <span style="color: #c03d3e;;font-weight: bolder;">GleSAM++</span>
+            to handle unseen degradations not included in the training set.
+          </p>
+          
+        </div>
+      </div>
+    </div> 
+
+  </div>
+    <!--/ Visual. -->
+</section>
+
+<hr>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{guo2025segment,
+      title={Segment Any-Quality Images with Generative Latent Space Enhancement},
+      author={Guo, Guangqian and Guo, Yong and Yu, Xuehui and Li, Wenbo and Wang, Yaoxing and Gao, Shan},
+      booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+      pages={2366--2376},
+      year={2025}
+    }</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://openaccess.thecvf.com/content/CVPR2025/papers/Guo_Segment_Any-Quality_Images_with_Generative_Latent_Space_Enhancement_CVPR_2025_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/guangqian-guo" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
