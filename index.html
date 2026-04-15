@@ -1,181 +1,442 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guangqian Guo's home page">
+  <title>Guangqian Guo</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f5f6f8;
+      color: #1f2d3d;
+      font-family: Georgia, "Times New Roman", serif;
+    }
 
-<HTML>
-<HEAD>
-  <META content="IE=5.0000" http-equiv="X-UA-Compatible">
-  <META name="description" content="Guangqian Guo's home page"> 
-  <META http-equiv="Content-Type" content="text/html; charset=gb2312">
-  <LINK href="files/doc.css" 
-    rel="stylesheet" type="text/css"> 
-  <TITLE>Guangqian Guo</TITLE> 
-  <META name="GENERATOR" content="MSHTML 11.00.10570.1001">
-</HEAD>
+    a {
+      color: #1f5f9c;
+      text-decoration: none;
+    }
 
+    a:hover {
+      text-decoration: underline;
+    }
 
-<BODY> 
-  <DIV id="layout-content" style="margin-top: 25px;">
-  <TABLE>
-    <TBODY>
-    <TR>
-      <TD width="870">
-        <DIV id="toptitle">
-        <H1>Guangqian Guo &nbsp;</H1></DIV>
-        <H3>Ph.D. Student at Northwestern Polytechnical University. </H3>
-        <!-- <BR>Address: 310, Aerospace Building 6, Youyi Campus, Northwestern Polytechnical University (西北工业大学友谊校区航天6号楼310). -->
-        <BR>
-        <BR> Email:  
-        <A href="mailto:guogq21@mail.nwpu.edu.cn"> guogq21@mail.nwpu.edu.cn</A>.
-        <BR></P>
-      </TD>
-      <TD>
-        <IMG width="300" src="files/photo2.jpg" border="0">
-      </TD>
-    </TR>
-    <TR></TR></TBODY>
-  </TABLE>
-  <DIV id="layout-content" style="margin-top: 25px;">
+    .page {
+      max-width: 1050px;
+      margin: 28px auto 40px;
+      padding: 0 18px 24px;
+    }
 
+    .hero,
+    .section-block {
+      background: #ffffff;
+      border: 1px solid #dfe4ea;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(31, 45, 61, 0.06);
+    }
 
-  <H2>Biography</H2>
-  <P> I am currently a second-year Ph.D. student at the Unmanned Systems Technology Research Institute, Northwestern Polytechnical University (NWPU). The outline of my experience is as follows:</P>
-  <LI> 09/2025--01-2026: Research intern, at ByteDance, working on unified multimodal understanding-generation modeling based on discrete diffusion models for parallel output. </LI> 
-  <LI> 08/2025--09/2025: Research intern, at VIVO-Camera Team, working on vision-language-model-based PhotoAgent for photo editing, tool-use planning, and multimodal agent evaluation.  </LI> 
-  <LI> 07/2024--04/2025: Research intern, at Huawei, working on robust segmentation foundation models for degraded visual inputs via generative latent-space enhancement </LI>
-  <LI> 03/2023--Present: Ph.D., at Northwestern Polytechnical University, Xi'an, China. </LI>
-  <LI> 09/2021--03/2023: M.S., at Northwestern Polytechnical University, Xi'an, China.  </LI>
-  <LI> 09/2017--07/2021: B.S., <b>rank: 1/144</b>,  at Shannxi University of Science and Technology, Xi'an, China. </LI>
-  <br>
-  <br>
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr 300px;
+      gap: 28px;
+      align-items: center;
+      padding: 28px 30px;
+      margin-bottom: 22px;
+    }
 
+    .hero h1 {
+      margin: 0 0 10px;
+      color: #284b78;
+      font-size: 2.3rem;
+    }
 
-  <p>
-My research primarily focuses on developing robust and data-efficient visual foundation models and multimodal large language models for visual perception, understanding, and generation. My work has been published in several top-tier conferences and journals, including CVPR, ECCV, IJCAI, TIP, TNNLS, and TCSVT.
-</p>
+    .hero h3 {
+      margin: 0 0 16px;
+      color: #425466;
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
 
-<p>
-More recently, I have been working on two closely related directions. The first is improving the robustness and generalization of visual foundation models, 
-especially for challenging scenarios such as degraded visual inputs, non-salient targets, and remote sensing images. 
-  The second is advancing multimodal large language models and vision-language agents for image understanding and generation, with a particular interest in diffusion-based UMM and VLM agents.
-</p>  
-  <!-- <p style="color: red"> I am actively looking for a research internship position related to AIGC and Multimodal Large Language Models.</p> -->
+    .hero p {
+      margin: 0;
+      color: #586575;
+      line-height: 1.75;
+      font-size: 1rem;
+    }
 
- <H2>Recent News</H2>
-    <LI> 12/2025     I have one journal paper (first author) (<a href="https://arxiv.org/abs/2601.00537">VNS-SAM</a>) accepted by T-IP (CCF-A, 中科院 Q1, IF=13.7). </LI>
-    <LI> 10/2025     <a href="https://ieeexplore.ieee.org/document/10146336">HANet</a> (TCSVT 2024) was selected as an ESI Highly Cited Paper. 
-    <LI> 06/2025     I will attend VALSE 2025 in Zhuhai and give a poster presentation. </LI>
-    <LI> 02/2025     I have one conference paper (<a href="https://arxiv.org/abs/2503.12507">GleSAM</a>) (first author) accepted by CVPR (CCF-A). </LI>
-    <LI> 12/2024     I have one journal paper (<a href="https://ieeexplore.ieee.org/document/10789225">SAM-COD+</a>) accepted by TCSVT (中科院 Q1, IF=11.1). </LI>
-    <LI> 07/2024     I have two conference paper (<a href="https://arxiv.org/pdf/2408.10760">SAM-COD</a> and <a href="https://arxiv.org/pdf/2408.10777">P-COD</a>) accepted by ECCV-24. </LI>
-    <LI> 04/2024     I have one conference paper (<a href="https://www.ijcai.org/proceedings/2024/448">P2P</a>) (first author) accepted by IJCAI-24 (CCF-A). </LI>
-    <LI> 02/2024     I have one journal paper (co-first author) accepted by TGRS (中科院 Q1, IF=8.2). </LI>
-    <LI> 05/2023     I have one journal paper (<a href="https://ieeexplore.ieee.org/document/10146336">HANet</a>) (first author) accepted by TCSVT (中科院 Q1, IF=11.1). </LI>
-    <LI> 01/2023     I have one journal paper accepted by TNNLS (中科院 Q1, CCF-B, IF=10.4).  </LI>
-    
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
 
-  <H2>Publications</H2>
-    <table class="pub_table">
-    <!-- <tbody> -->
-      
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/glesam.png" class="papericon"></td>
-        <td 
-          class="pub_td2"><u><b>Guangqian Guo</b></u>, Yong Guo, Xuehui Yu, Wenbo Li, Yaoxing Wang, Shan Gao
-          <br><b>Segment Any-Quality Images with Generative Latent Space Enhancement</b>
-          <br> IEEE Computer Vision and Pattern Recognition Conference (<b>CVPR</b>), 2025
-          <br> [<a href="https://arxiv.org/abs/2503.12507">Paper</a>] [<a href="https://github.com/guangqian-guo/GleSAM">Code</a>]
-        </td>
-      </tr>
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid #d9e1ea;
+      border-radius: 999px;
+      background: #f8fbfe;
+      color: #284b78;
+      font-size: 0.95rem;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/p2p-ijcai.png" class="papericon"></td>
-        <td 
-          class="pub_td2"><u><b>Guangqian Guo</b></u>, Dian Shao, Chenguang Zhu, Sha Meng, Xuan Wang, Shan Gao
-          <br><b>P2P: Transforming from Point Supervision to Explicit Visual Prompt for Object Detection and Segmentation</b>
-          <br> INTERNATIONAL JOINT CONFERENCE ON ARTIFICIAL INTELLIGENCE (<b>IJCAI</b>), 2024
-          <br> [<a href="https://www.ijcai.org/proceedings/2024/448">Paper</a>] [<a href="https://github.com/guangqian-guo/P2P">Code</a>]
-        </td>
-      </tr>
+    .icon-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      flex: 0 0 auto;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/hanet.png" class="papericon"></td>
-        <td 
-          class="pub_td2"><u><b>Guangqian Guo</b></u>, Pengfei Chen, Xuehui Yu, Zhenjun Han, Qixiang Ye, Shan Gao
-          <br><b>HANet: Save the Tiny, Save the All: Hierarchical Activation Network for Tiny Object Detection</b>
-          <br> IEEE Transactions on Circuits and Systems for Video Technology (<b>TCSVT</b>), 2023
-          <br> [<a href="https://ieeexplore.ieee.org/abstract/document/10146336">Paper</a>] [<a href="https://github.com/guangqian-guo/HANet">Code</a>]
-        </td>
-      </tr>
+    .profile-photo {
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      border-radius: 14px;
+      display: block;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/rpg.png" class="papericon"></td>
-        <td 
-          class="pub_td2">&ast;Chaowei Wang, &ast;<u><b>Guangqian Guo</b></u>, Chang Liu, Dian Shao, Shan Gao
-          <br><b>Effective Rotate: Learning Rotation-robust Prototype for Aerial Object Detection</b>
-          <br> &ast; co-first author
-          <br> IEEE Transactions on Geoscience and Remote Sensing (<b>TGRS</b>), 2024
-          <br> [<a href="https://ieeexplore.ieee.org/abstract/document/10463070">Paper</a>]
-        </td>
-      </tr>
+    .section-block {
+      padding: 24px 26px;
+      margin-bottom: 20px;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/hybrid-net.png" class="papericon"></td>
-        <td 
-          class="pub_td2">Shan Gao (Ph.D. advisor), &ast;<u><b>Guangqian Guo</b></u>, Hanqiao Huang, C. L. Philip Chen
-          <br><b>Go deep or broad? Exploit hybrid network architecture for weakly supervised object classiﬁcation and localization</b>
-          <br>  &ast; student first author
-          <br> IEEE Transactions on Neural Networks and Learning Systems (<b>TNNLS</b>), 2023
-          <br> [<a href="https://ieeexplore.ieee.org/abstract/document/10005156">Paper</a>]
-        </td>
-      </tr>
+    .section-block h2 {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eef2f6;
+      color: #284b78;
+      font-size: 1.8rem;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/sam-cod.png" class="papericon"></td>
-        <td 
-          class="pub_td2"> Huafeng Chen, Pengxu Wei, <u><b>Guangqian Guo</b></u>, Shan Gao
-          <br><b> SAM-COD: SAM-guided Unified Framework for Weakly-Supervised Camouflaged Object Detection</b>
-          <br> European Conference on Computer Vision (<b>ECCV</b>), 2024
-          <br> [<a href="https://arxiv.org/pdf/2408.10760">Paper</a>]
-        </td>
-      </tr>
+    .about-text p {
+      margin: 0 0 14px;
+      line-height: 1.85;
+      font-size: 1.03rem;
+      color: #334455;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/pcod.png" class="papericon"></td>
-        <td 
-          class="pub_td2"> Huafeng Chen, Dian Shao, <u><b>Guangqian Guo</b></u>, Shan Gao
-          <br><b>Just a Hint: Point-Supervised Camouflaged Object Detection</b>
-          <br> European Conference on Computer Vision (<b>ECCV</b>), 2024
-          <br> [<a href="https://arxiv.org/pdf/2408.10777">Paper</a>]
-        </td>
-      </tr>
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
 
-      <tr>
-        <td class="pub_td1"><img src="files/PaperFig/bls-event.png" class="papericon"></td>
-        <td 
-          class="pub_td2">Shan Gao, <u><b>Guangqian Guo</b></u>, C. L. Philip Chen
-          <br> <b>Event-Based Incremental Broad Learning System for Object Classification</b>
-          <br> IEEE International Conference on Computer Vision Workshop (<b>ICCVW</b>), 2019
-          
-        </td>
-      </tr>
-    </table>
+    .internship-list {
+      display: grid;
+      gap: 14px;
+    }
 
-    <!-- <H2>Submissions</H2>
-    <LI> I have three papers submitted to ECCV 2024 (one as the first author),  03/2024. </LI> -->
-    
+    .internship-item {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 18px;
+      border: 1px solid #e3e8ee;
+      border-radius: 14px;
+      background: #fafbfd;
+    }
 
-    <H2>Awards</H2>
-        <LI>  National Scholarship (<b>recevied twice</b>), 2018, 2024 </LI>
-        <LI>	The First Prize Scholarship for Ph.D. of Northwestern Polytechnical University, 2023, 2024, 2025  </LI> 
-        <LI>	Outstanding Graduates of Colleges and Universities in Shaanxi Province, 2021  </LI> 
+    .logo-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #e3e8ee;
+    }
 
+    .logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 7px;
+      display: block;
+    }
 
-    <!-- <H2>Github Statistics</Source></H2>
-      <td class="pub_td1"><img src="https://github-readme-stats.vercel.app/api?username=pengzhiliang&show_icons=true&include_all_commits=true&title_color=2c86ea&icon_color=2c86ea&text_color=00c800&bg_color=00000000"></td>
-    
-  
-  <br> <br> 
-  <H2>Statistics</H2>
-  <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5063gq35g0n&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script>
--->
-</BODY>
-</HTML>
+    .internship-item h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+      color: #24384d;
+    }
+
+    .meta {
+      margin: 0 0 8px;
+      color: #6a7786;
+      font-size: 0.94rem;
+    }
+
+    .internship-item p {
+      margin: 0;
+      color: #3f4e5f;
+      line-height: 1.75;
+    }
+
+    .news-list {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .news-list li {
+      margin-bottom: 10px;
+      line-height: 1.75;
+      color: #334455;
+    }
+
+    .news-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .pub_table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 16px;
+    }
+
+    .pub_table td {
+      vertical-align: top;
+    }
+
+    .pub_td1 {
+      width: 220px;
+      padding-right: 18px;
+    }
+
+    .pub_td1 img {
+      width: 200px;
+      border-radius: 10px;
+      border: 1px solid #e3e8ee;
+      display: block;
+    }
+
+    .pub_td2 {
+      padding: 6px 0;
+      line-height: 1.7;
+      color: #334455;
+    }
+
+    .pub_td2 b {
+      color: #22384e;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-photo {
+        max-width: 240px;
+        margin: 0;
+      }
+
+      .internship-item {
+        grid-template-columns: 1fr;
+      }
+
+      .pub_table,
+      .pub_table tbody,
+      .pub_table tr,
+      .pub_table td {
+        display: block;
+        width: 100%;
+      }
+
+      .pub_td1 {
+        padding-right: 0;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <div>
+        <h1>Guangqian Guo</h1>
+        <h3>Ph.D. Student at Northwestern Polytechnical University</h3>
+        <div class="contact-row">
+          <a class="icon-link" href="mailto:guogq21@mail.nwpu.edu.cn" aria-label="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-.4 3-6.7 5.2a1.5 1.5 0 0 1-1.8 0L4.4 7h15.2Z"/></svg>
+            <span>Email</span>
+          </a>
+          <a class="icon-link" href="https://scholar.google.com/citations?hl=zh-CN&user=IhZcxSEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.2 9.57V16c0 2.76 3.13 5 7 5s7-2.24 7-5v-3.43L12 17l-6.2-4.43Z"/></svg>
+            <span>Google Scholar</span>
+          </a>
+        </div>
+      </div>
+      <img class="profile-photo" src="files/photo2.jpg" alt="Guangqian Guo">
+    </div>
+
+    <section class="section-block">
+      <h2>About Me</h2>
+      <div class="about-text">
+        <p>
+        I am currently a Ph.D. student at the School of Artificial Intelligence, Northwestern Polytechnical University (NWPU), Xi'an, China, from 2023.
+        Before that, I received my B.S. from Shaanxi University of Science and Technology, Xi'an, China, in 2021. I am advised by Prof. Shan Gao and have been fortunate to have had the opportunity to intern at Huawei, vivo, and ByteDance, where I gained valuable experience in both academia and industry.
+        </p>
+        <p>
+          My research primarily focuses on developing robust and data-efficient visual foundation models and multimodal large language models for visual perception, understanding, and generation. More recently, I have been working on two closely related directions:
+        </p>
+        <p>
+          1. <b>Robust visual foundation models:</b> improving robustness and generalization for challenging scenarios such as degraded visual inputs, non-salient targets, and remote sensing images.
+        </p>
+        <p>
+          2. <b>Multimodal large language models and vision-language agents:</b> advancing image understanding and generation, with a particular interest in diffusion-based UMM and VLM agents.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <h2>Internships</h2>
+      <div class="internship-list">
+        <div class="internship-item">
+          <div class="logo-badge"><img src="files/PaperFig/bytedance.png" alt="ByteDance logo"></div>
+          <div>
+            <h3>ByteDance</h3>
+            <p class="meta">09/2025 - 01/2026 | Research Intern</p>
+            <p>Worked on unified multimodal understanding-generation modeling based on discrete diffusion models for parallel output.</p>
+          </div>
+        </div>
+
+        <div class="internship-item">
+          <div class="logo-badge"><img src="files/PaperFig/vivo.png" alt="vivo logo"></div>
+          <div>
+            <h3>vivo Camera Team</h3>
+            <p class="meta">08/2025 - 09/2025 | Research Intern</p>
+            <p>Worked on a vision-language-model-based PhotoAgent for photo editing, tool-use planning, and multimodal agent evaluation.</p>
+          </div>
+        </div>
+
+        <div class="internship-item">
+          <div class="logo-badge"><img src="files/PaperFig/images.jfif" alt="Huawei logo"></div>
+          <div>
+            <h3>Huawei</h3>
+            <p class="meta">07/2024 - 04/2025 | Research Intern</p>
+            <p>Worked on robust segmentation foundation models for degraded visual inputs via generative latent-space enhancement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <h2>Recent News</h2>
+      <ul class="news-list">
+        <li>12/2025: One first-author journal paper, <a href="https://arxiv.org/abs/2601.00537">VNS-SAM</a>, was accepted by IEEE Transactions on Image Processing.</li>
+        <li>10/2025: <a href="https://ieeexplore.ieee.org/document/10146336">HANet</a> was selected as an ESI Highly Cited Paper.</li>
+        <li>06/2025: I attended VALSE 2025 in Zhuhai and gave a poster presentation.</li>
+        <li>02/2025: My first-author paper <a href="https://arxiv.org/abs/2503.12507">GleSAM</a> was accepted by CVPR 2025.</li>
+        <li>12/2024: <a href="https://ieeexplore.ieee.org/document/10789225">SAM-COD+</a> was accepted by IEEE Transactions on Circuits and Systems for Video Technology.</li>
+        <li>07/2024: Two papers, <a href="https://arxiv.org/pdf/2408.10760">SAM-COD</a> and <a href="https://arxiv.org/pdf/2408.10777">P-COD</a>, were accepted by ECCV 2024.</li>
+        <li>04/2024: My first-author paper <a href="https://www.ijcai.org/proceedings/2024/448">P2P</a> was accepted by IJCAI 2024.</li>
+        <LI> 02/2024     I have one journal paper (co-first author) accepted by TGRS (中科院 Q1, IF=8.2). </LI>
+        <LI> 05/2023     I have one journal paper (<a href="https://ieeexplore.ieee.org/document/10146336">HANet</a>) (first author) accepted by TCSVT (中科院 Q1, IF=11.1). </LI>
+        <LI> 01/2023     I have one journal paper accepted by TNNLS (中科院 Q1, CCF-B, IF=10.4).  </LI>
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <h2>Publications</h2>
+      <table class="pub_table">
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/glesam.png" alt="GleSAM paper figure"></td>
+          <td class="pub_td2">
+            <u><b>Guangqian Guo</b></u>, Yong Guo, Xuehui Yu, Wenbo Li, Yaoxing Wang, Shan Gao
+            <br><b>Segment Any-Quality Images with Generative Latent Space Enhancement</b>
+            <br>IEEE Computer Vision and Pattern Recognition Conference (<b>CVPR</b>), 2025
+            <br>[<a href="https://arxiv.org/abs/2503.12507">Paper</a>] [<a href="https://github.com/guangqian-guo/GleSAM">Code</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/vns-sam.png" alt="VNS-SAM paper figure"></td>
+          <td class="pub_td2">
+            <u><b>Guangqian Guo</b></u>, Pengfei Chen, Yong Guo, Huafeng Chen, Boqiang Zahng, Shan Gao
+            <br><b>Boosting Segment Anything Model to Generalize Visually Non-Salient Scenarios</b>
+            <br>IEEE Transactions on Image Processing (<b>TIP</b>), 2025
+            <br>[<a href="">Paper</a>] [<a href="https://github.com/guangqian-guo/VNS-SAM">Code</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/glesam-plus.png" alt="GleSAM+ paper figure"></td>
+          <td class="pub_td2">
+            <u><b>Guangqian Guo</b></u>, Aixi Ren, Yong Guo, Xuehui Yu, Jiacheng Tian, Wenli Li, Yaoxing Wang, Shan Gao
+            <br><b>Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement</b>
+            <br>International Journal of Computer Vision (<b>IJCV</b>), major revision.
+            <br>[<a href="">Paper</a>] [<a href="https://github.com/guangqian-guo/GleSAM">Code</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/p2p-ijcai.png" alt="P2P paper figure"></td>
+          <td class="pub_td2">
+            <u><b>Guangqian Guo</b></u>, Dian Shao, Chenguang Zhu, Sha Meng, Xuan Wang, Shan Gao
+            <br><b>P2P: Transforming from Point Supervision to Explicit Visual Prompt for Object Detection and Segmentation</b>
+            <br>International Joint Conference on Artificial Intelligence (<b>IJCAI</b>), 2024
+            <br>[<a href="https://www.ijcai.org/proceedings/2024/448">Paper</a>] [<a href="https://github.com/guangqian-guo/P2P">Code</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/hanet.png" alt="HANet paper figure"></td>
+          <td class="pub_td2">
+            <u><b>Guangqian Guo</b></u>, Pengfei Chen, Xuehui Yu, Zhenjun Han, Qixiang Ye, Shan Gao
+            <br><b>HANet: Save the Tiny, Save the All: Hierarchical Activation Network for Tiny Object Detection</b>
+            <br>IEEE Transactions on Circuits and Systems for Video Technology (<b>TCSVT</b>), 2023
+            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10146336">Paper</a>] [<a href="https://github.com/guangqian-guo/HANet">Code</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/rpg.png" alt="RPG paper figure"></td>
+          <td class="pub_td2">
+            &ast;Chaowei Wang, &ast;<u><b>Guangqian Guo</b></u>, Chang Liu, Dian Shao, Shan Gao
+            <br><b>Effective Rotate: Learning Rotation-Robust Prototype for Aerial Object Detection</b>
+            <br>&ast; co-first author
+            <br>IEEE Transactions on Geoscience and Remote Sensing (<b>TGRS</b>), 2024
+            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10463070">Paper</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/hybrid-net.png" alt="Hybrid-Net paper figure"></td>
+          <td class="pub_td2">
+            Shan Gao (Ph.D. advisor), &ast;<u><b>Guangqian Guo</b></u>, Hanqiao Huang, C. L. Philip Chen
+            <br><b>Go Deep or Broad? Exploit Hybrid Network Architecture for Weakly Supervised Object Classification and Localization</b>
+            <br>&ast; student first author
+            <br>IEEE Transactions on Neural Networks and Learning Systems (<b>TNNLS</b>), 2023
+            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10005156">Paper</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/sam-cod.png" alt="SAM-COD paper figure"></td>
+          <td class="pub_td2">
+            Huafeng Chen, Pengxu Wei, <u><b>Guangqian Guo</b></u>, Shan Gao
+            <br><b>SAM-COD: SAM-guided Unified Framework for Weakly-Supervised Camouflaged Object Detection</b>
+            <br>European Conference on Computer Vision (<b>ECCV</b>), 2024
+            <br>[<a href="https://arxiv.org/pdf/2408.10760">Paper</a>]
+          </td>
+        </tr>
+
+        <tr>
+          <td class="pub_td1"><img src="files/PaperFig/pcod.png" alt="P-COD paper figure"></td>
+          <td class="pub_td2">
+            Huafeng Chen, Dian Shao, <u><b>Guangqian Guo</b></u>, Shan Gao
+            <br><b>Just a Hint: Point-Supervised Camouflaged Object Detection</b>
+            <br>European Conference on Computer Vision (<b>ECCV</b>), 2024
+            <br>[<a href="https://arxiv.org/pdf/2408.10777">Paper</a>]
+          </td>
+        </tr>
+      </table>
+    </section>
+  </div>
+</body>
+</html>
