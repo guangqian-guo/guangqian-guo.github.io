@@ -133,7 +133,7 @@
       display: grid;
       grid-template-columns: 66px 1fr;
       gap: 16px;
-      align-items: center;
+      align-items: start;
       padding: 16px 18px;
       border: 1px solid #e3e8ee;
       border-radius: 14px;
@@ -143,18 +143,20 @@
     .logo-badge {
       width: 52px;
       height: 52px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #e3e8ee;
     }
 
     .logo-badge img {
-      max-height: 40px;
-      max-width: 48px;
-      width: auto;
-      height: auto;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      padding: 7px;
       display: block;
     }
 
@@ -277,7 +279,7 @@
       <div class="about-text">
         <p>
         I am currently a Ph.D. student at the School of Artificial Intelligence, Northwestern Polytechnical University (NWPU), Xi'an, China, from 2023.
-        Before that, I received my B.S. from Shaanxi University of Science and Technology, Xi'an, China, in 2021. I am advised by Prof. Shan Gao and have been fortunate to have had the opportunity to intern at Huawei, ByteDance, and Tencent, where I gained valuable experience in both academia and industry.
+        Before that, I received my B.S. from Shaanxi University of Science and Technology, Xi'an, China, in 2021. I am advised by Prof. Shan Gao and have been fortunate to have had the opportunity to intern at Huawei, vivo, and ByteDance, where I gained valuable experience in both academia and industry.
         </p>
         <p>
           My research primarily focuses on developing robust and data-efficient visual foundation models and multimodal large language models for visual perception, understanding, and generation. More recently, I have been working on two closely related directions:
@@ -295,20 +297,20 @@
       <h2>Internships</h2>
       <div class="internship-list">
         <div class="internship-item">
-          <div class="logo-badge"><img src="files/PaperFig/tencent.png" alt="Tencent logo"></div>
-          <div>
-            <h3>Tencent</h3>
-            <p class="meta">05/2026 - Present | Intern</p>
-            <p>Worked on advertising insight planning and creative production, including market and audience research, insight extraction, campaign strategy support, and AI-assisted creative ideation and content production.</p>
-          </div>
-        </div>
-
-        <div class="internship-item">
           <div class="logo-badge"><img src="files/PaperFig/bytedance.png" alt="ByteDance logo"></div>
           <div>
             <h3>ByteDance</h3>
             <p class="meta">09/2025 - 01/2026 | Research Intern</p>
             <p>Worked on unified multimodal understanding-generation modeling based on discrete diffusion models for parallel output.</p>
+          </div>
+        </div>
+
+        <div class="internship-item">
+          <div class="logo-badge"><img src="files/PaperFig/vivo.png" alt="vivo logo"></div>
+          <div>
+            <h3>vivo Camera Team</h3>
+            <p class="meta">08/2025 - 09/2025 | Research Intern</p>
+            <p>Worked on a vision-language-model-based PhotoAgent for photo editing, tool-use planning, and multimodal agent evaluation.</p>
           </div>
         </div>
 
