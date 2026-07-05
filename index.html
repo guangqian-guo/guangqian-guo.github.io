@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,435 +7,782 @@
   <meta name="description" content="Guangqian Guo's home page">
   <title>Guangqian Guo</title>
   <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2d3d;
+      --fg-muted: #5b6470;
+      --fg-soft: #7a8290;
+      --accent: #1f5f9c;
+      --accent-hover: #144a7d;
+      --border: #e6e8eb;
+      --border-strong: #d4d8dd;
+      --nav-bg: rgba(255, 255, 255, 0.85);
+      --info-bg: #eef4fb;
+      --info-border: #cfe0f2;
+      --pill-bg: #f4f6f9;
+      --pill-fg: #3a4655;
+      --timeline: #d4d8dd;
+      --card-bg: #ffffff;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #1a1d21;
+      --fg: #e6e8eb;
+      --fg-muted: #9ba3ad;
+      --fg-soft: #7a8290;
+      --accent: #7ab7ec;
+      --accent-hover: #a9d1f0;
+      --border: #2c3138;
+      --border-strong: #3a4048;
+      --nav-bg: rgba(26, 29, 33, 0.85);
+      --info-bg: #1f2a36;
+      --info-border: #2f4359;
+      --pill-bg: #262b32;
+      --pill-fg: #b8bfc7;
+      --timeline: #3a4048;
+      --card-bg: #1f2328;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      background: #f5f6f8;
-      color: #1f2d3d;
-      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     a {
-      color: #1f5f9c;
+      color: var(--accent);
       text-decoration: none;
     }
 
     a:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
     }
 
-    .page {
-      max-width: 1050px;
-      margin: 28px auto 40px;
-      padding: 0 18px 24px;
+    /* ---------- Top nav ---------- */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
     }
 
-    .hero,
-    .section-block {
-      background: #ffffff;
-      border: 1px solid #dfe4ea;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(31, 45, 61, 0.06);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.35fr 300px;
-      gap: 28px;
-      align-items: center;
-      padding: 28px 30px;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 {
-      margin: 0 0 10px;
-      color: #284b78;
-      font-size: 2.3rem;
-    }
-
-    .hero h3 {
-      margin: 0 0 16px;
-      color: #425466;
-      font-size: 1.08rem;
-      font-weight: 600;
-    }
-
-    .hero p {
-      margin: 0;
-      color: #586575;
-      line-height: 1.75;
-      font-size: 1rem;
-    }
-
-    .contact-row {
+    .nav-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 28px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    .icon-link {
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--fg);
+      white-space: nowrap;
+    }
+
+    .nav-brand:hover { text-decoration: none; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--fg-muted);
+      font-size: 0.98rem;
+      font-weight: 500;
+      padding: 4px 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 999px;
+      color: var(--fg-muted);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
-      border: 1px solid #d9e1ea;
-      border-radius: 999px;
-      background: #f8fbfe;
-      color: #284b78;
-      font-size: 0.95rem;
+      justify-content: center;
+      transition: color 0.15s ease, background 0.15s ease;
     }
 
-    .icon-link svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-      flex: 0 0 auto;
+    .theme-toggle:hover {
+      color: var(--accent);
+      background: var(--pill-bg);
+    }
+
+    .theme-toggle svg { width: 20px; height: 20px; }
+
+    html[data-theme="light"] .icon-sun { display: none; }
+    html[data-theme="dark"] .icon-moon { display: none; }
+
+    /* ---------- Layout ---------- */
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 28px 80px;
+    }
+
+    section { scroll-margin-top: 80px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 56px;
+      align-items: start;
+      padding-bottom: 12px;
+    }
+
+    .hero-side {
+      text-align: center;
+      position: sticky;
+      top: 88px;
     }
 
     .profile-photo {
-      width: 100%;
-      max-width: 300px;
-      margin-left: auto;
-      border-radius: 14px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
       display: block;
+      margin: 0 auto 18px;
+      border: 1px solid var(--border);
     }
 
-    .section-block {
-      padding: 24px 26px;
-      margin-bottom: 20px;
+    .hero-name {
+      margin: 0 0 6px;
+      font-size: 1.65rem;
+      font-weight: 600;
+      color: var(--fg);
+      letter-spacing: -0.01em;
     }
 
-    .section-block h2 {
+    .hero-title {
+      margin: 0 0 4px;
+      font-size: 0.98rem;
+      color: var(--fg-muted);
+      line-height: 1.5;
+    }
+
+    .hero-affiliation {
       margin: 0 0 18px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #eef2f6;
-      color: #284b78;
-      font-size: 1.8rem;
+      font-size: 0.98rem;
     }
 
-    .about-text p {
-      margin: 0 0 14px;
-      line-height: 1.85;
-      font-size: 1.03rem;
-      color: #334455;
-    }
-
-    .about-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .internship-list {
-      display: grid;
+    .social-row {
+      display: flex;
+      justify-content: center;
       gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .internship-item {
-      display: grid;
-      grid-template-columns: 66px 1fr;
-      gap: 16px;
+    .social-row a {
+      color: var(--accent);
+      display: inline-flex;
       align-items: center;
-      padding: 16px 18px;
-      border: 1px solid #e3e8ee;
-      border-radius: 14px;
-      background: #fafbfd;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .logo-badge {
+    .social-row a:hover {
+      background: var(--pill-bg);
+      color: var(--accent-hover);
+      text-decoration: none;
+    }
+
+    .social-row svg { width: 22px; height: 22px; fill: currentColor; }
+
+    /* ---------- Section ---------- */
+    .section-title {
+      margin: 0 0 24px;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+    }
+
+    section + section { margin-top: 56px; }
+
+    .about p {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: var(--fg);
+      line-height: 1.75;
+    }
+
+    .about p:last-child { margin-bottom: 0; }
+
+    .subgrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 30px;
+    }
+
+    .subgrid h3 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .subgrid ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .subgrid li {
+      margin-bottom: 6px;
+      color: var(--fg);
+    }
+
+    /* ---------- Experience timeline ---------- */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--timeline);
+    }
+
+    .exp-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 28px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--timeline);
+    }
+
+    .exp-logo {
       width: 52px;
       height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      border-radius: 8px;
+      background: var(--pill-bg);
     }
 
-    .logo-badge img {
-      max-height: 40px;
-      max-width: 48px;
+    .exp-logo img {
+      max-width: 42px;
+      max-height: 42px;
       width: auto;
       height: auto;
       object-fit: contain;
-      display: block;
     }
 
-    .internship-item h3 {
-      margin: 0 0 6px;
+    .exp-body h3 {
+      margin: 0 0 4px;
       font-size: 1.08rem;
-      color: #24384d;
+      font-weight: 600;
+      color: var(--fg);
     }
 
-    .meta {
-      margin: 0 0 8px;
-      color: #6a7786;
-      font-size: 0.94rem;
+    .exp-org {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      color: var(--fg);
     }
 
-    .internship-item p {
+    .exp-meta {
+      margin: 0 0 10px;
+      color: var(--fg-soft);
+      font-size: 0.9rem;
+    }
+
+    .exp-body p {
       margin: 0;
-      color: #3f4e5f;
-      line-height: 1.75;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
     }
 
+    /* ---------- News ---------- */
     .news-list {
       margin: 0;
-      padding-left: 22px;
+      padding: 0;
+      list-style: none;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .news-list::-webkit-scrollbar { width: 6px; }
+    .news-list::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 3px;
     }
 
     .news-list li {
-      margin-bottom: 10px;
-      line-height: 1.75;
-      color: #334455;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--fg);
+      line-height: 1.65;
     }
 
-    .news-list li:last-child {
-      margin-bottom: 0;
+    .news-list li:last-child { border-bottom: none; }
+
+    .news-date {
+      color: var(--fg-soft);
+      font-size: 0.9rem;
+      white-space: nowrap;
+      padding-top: 1px;
     }
 
-    .pub_table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 16px;
+    /* ---------- Publications ---------- */
+    .pub-hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--info-bg);
+      border: 1px solid var(--info-border);
+      color: var(--fg-muted);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.94rem;
+      margin-bottom: 28px;
     }
 
-    .pub_table td {
-      vertical-align: top;
+    .pub-hint svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+      flex: 0 0 auto;
     }
 
-    .pub_td1 {
-      width: 220px;
-      padding-right: 18px;
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
     }
 
-    .pub_td1 img {
-      width: 200px;
-      border-radius: 10px;
-      border: 1px solid #e3e8ee;
+    .pub-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .pub-thumb {
+      width: 160px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
       display: block;
     }
 
-    .pub_td2 {
-      padding: 6px 0;
-      line-height: 1.7;
-      color: #334455;
+    .pub-body {
+      color: var(--fg);
+      line-height: 1.65;
+      font-size: 0.98rem;
     }
 
-    .pub_td2 b {
-      color: #22384e;
+    .pub-body b { color: var(--fg); }
+
+    .pub-title {
+      display: block;
+      margin: 4px 0;
+      font-weight: 600;
+      color: var(--fg);
     }
 
-    @media (max-width: 860px) {
+    .pub-venue {
+      display: block;
+      margin: 4px 0;
+      color: var(--fg-muted);
+      font-style: italic;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .pub-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--pill-bg);
+      color: var(--pill-fg);
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pub-pill:hover {
+      background: var(--info-bg);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .nav-inner { padding: 12px 18px; }
+      .nav-links { gap: 14px; }
+      .page { padding: 28px 18px 60px; }
       .hero {
         grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
       }
+      .hero-side { position: static; }
+      .profile-photo { width: 180px; height: 180px; }
+      .subgrid { grid-template-columns: 1fr; gap: 20px; }
+      .pub-item { grid-template-columns: 1fr; gap: 12px; }
+      .pub-thumb { width: 100%; max-width: 260px; }
+      .news-list li { grid-template-columns: 90px 1fr; gap: 10px; }
+    }
 
-      .profile-photo {
-        max-width: 240px;
-        margin: 0;
-      }
-
-      .internship-item {
-        grid-template-columns: 1fr;
-      }
-
-      .pub_table,
-      .pub_table tbody,
-      .pub_table tr,
-      .pub_table td {
-        display: block;
-        width: 100%;
-      }
-
-      .pub_td1 {
-        padding-right: 0;
-        margin-bottom: 10px;
-      }
+    @media (max-width: 560px) {
+      .nav-brand { font-size: 0.95rem; }
+      .nav-links a { font-size: 0.9rem; }
+      .section-title { font-size: 1.9rem; }
+      .exp-item { grid-template-columns: 44px 1fr; padding: 14px; }
+      .exp-logo { width: 44px; height: 44px; }
+      .exp-logo img { max-width: 34px; max-height: 34px; }
+      .news-list li { grid-template-columns: 1fr; gap: 2px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="hero">
-      <div>
-        <h1>Guangqian Guo</h1>
-        <h3>Ph.D. Student at Northwestern Polytechnical University</h3>
-        <div class="contact-row">
-          <a class="icon-link" href="mailto:guogq21@mail.nwpu.edu.cn" aria-label="Email">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-.4 3-6.7 5.2a1.5 1.5 0 0 1-1.8 0L4.4 7h15.2Z"/></svg>
-            <span>Email</span>
-          </a>
-          <a class="icon-link" href="https://scholar.google.com/citations?hl=zh-CN&user=IhZcxSEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.2 9.57V16c0 2.76 3.13 5 7 5s7-2.24 7-5v-3.43L12 17l-6.2-4.43Z"/></svg>
-            <span>Google Scholar</span>
-          </a>
-        </div>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#home">Guangqian's Homepage</a>
+      <div class="nav-links">
+        <a href="#home" data-nav>Home</a>
+        <a href="#experience" data-nav>Experience</a>
+        <a href="#news" data-nav>News</a>
+        <a href="#publications" data-nav>Publications</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
       </div>
-      <img class="profile-photo" src="files/photo2.jpg" alt="Guangqian Guo">
     </div>
+  </nav>
 
-    <section class="section-block">
-      <h2>About Me</h2>
-      <div class="about-text">
-        <p>
-        I am currently a Ph.D. student at the School of Artificial Intelligence, Northwestern Polytechnical University (NWPU), Xi'an, China, from 2023.
-        Before that, I received my B.S. from Shaanxi University of Science and Technology, Xi'an, China, in 2021. I am advised by Prof. Shan Gao and have been fortunate to have had the opportunity to intern at Huawei, ByteDance, and Tencent, where I gained valuable experience in both academia and industry.
-        </p>
-        <p>
-          My research primarily focuses on developing robust and data-efficient visual foundation models and multimodal large language models for visual perception, understanding, and generation. More recently, I have been working on two closely related directions:
-        </p>
-        <p>
-          1. <b>Robust visual foundation models:</b> improving robustness and generalization for challenging scenarios such as degraded visual inputs, non-salient targets, and remote sensing images.
-        </p>
-        <p>
-          2. <b>Multimodal large language models and vision-language agents:</b> advancing image understanding and generation, with a particular interest in diffusion-based UMM and VLM agents.
-        </p>
-      </div>
-    </section>
-
-    <section class="section-block">
-      <h2>Internships</h2>
-      <div class="internship-list">
-        <div class="internship-item">
-          <div class="logo-badge"><img src="files/PaperFig/tencent.png" alt="Tencent logo"></div>
-          <div>
-            <h3>Tencent</h3>
-            <p class="meta">05/2026 - Present | Intern</p>
-            <p>Worked on advertising insight planning and creative production, including market and audience research, insight extraction, campaign strategy support, and AI-assisted creative ideation and content production.</p>
-          </div>
+  <main class="page">
+    <section id="home" class="hero">
+      <aside class="hero-side">
+        <img class="profile-photo" src="files/photo2.jpg" alt="Guangqian Guo">
+        <h2 class="hero-name">Guangqian Guo</h2>
+        <p class="hero-title">Ph.D. Student</p>
+        <p class="hero-affiliation"><a href="https://www.nwpu.edu.cn/" target="_blank" rel="noopener noreferrer">Northwestern Polytechnical University</a></p>
+        <div class="social-row">
+          <a href="mailto:guogq21@mail.nwpu.edu.cn" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm-.4 3-6.7 5.2a1.5 1.5 0 0 1-1.8 0L4.4 7h15.2Z"/></svg>
+          </a>
+          <a href="https://scholar.google.com/citations?hl=zh-CN&user=IhZcxSEAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar" title="Google Scholar">
+            <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3Zm-6.2 9.57V16c0 2.76 3.13 5 7 5s7-2.24 7-5v-3.43L12 17l-6.2-4.43Z"/></svg>
+          </a>
+          <a href="https://github.com/guangqian-guo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.51 11.51 0 0 0 7.86 10.92c.58.11.79-.25.79-.55v-2c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.77.12 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.55A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+          </a>
         </div>
+      </aside>
 
-        <div class="internship-item">
-          <div class="logo-badge"><img src="files/PaperFig/bytedance.png" alt="ByteDance logo"></div>
-          <div>
-            <h3>ByteDance</h3>
-            <p class="meta">09/2025 - 01/2026 | Research Intern</p>
-            <p>Worked on unified multimodal understanding-generation modeling based on discrete diffusion models for parallel output.</p>
-          </div>
-        </div>
-
-        <div class="internship-item">
-          <div class="logo-badge"><img src="files/PaperFig/images.jfif" alt="Huawei logo"></div>
-          <div>
-            <h3>Huawei</h3>
-            <p class="meta">07/2024 - 04/2025 | Research Intern</p>
-            <p>Worked on robust segmentation foundation models for degraded visual inputs via generative latent-space enhancement.</p>
-          </div>
+      <div class="hero-main">
+        <h1 class="section-title">Biography</h1>
+        <div class="about">
+          <p>
+            I am currently a Ph.D. student at the <a href="https://soai.nwpu.edu.cn/" target="_blank" rel="noopener noreferrer">School of Artificial Intelligence</a>, Northwestern Polytechnical University (NWPU), Xi'an, China, since 2023. Before that, I received my B.S. from Shaanxi University of Science and Technology, Xi'an, China, in 2021. I am advised by Prof. Shan Gao and have been fortunate to have had the opportunity to intern at <b>Huawei</b>, <b>ByteDance</b>, and <b>Tencent</b>, where I gained valuable experience in both academia and industry.
+          </p>
+          <p>
+            My research primarily focuses on developing robust and data-efficient visual foundation models and multimodal large language models for visual perception, understanding, and generation. More recently, I have been working on two closely related directions:
+          </p>
+          <p>
+            <b>1. Robust visual foundation models:</b> improving robustness and generalization for challenging scenarios such as degraded visual inputs, non-salient targets, and remote sensing images.
+          </p>
+          <p>
+            <b>2. VLM, AIGC and Agents.</b>
+          </p>
         </div>
       </div>
     </section>
 
-    <section class="section-block">
-      <h2>Recent News</h2>
+    <section id="experience">
+      <h1 class="section-title">Experience</h1>
+      <div class="timeline">
+        <div class="exp-item">
+          <div class="exp-logo"><img src="files/PaperFig/tencent.png" alt="Tencent logo"></div>
+          <div class="exp-body">
+            <h3>Research Intern</h3>
+            <p class="exp-org"><b>Tencent</b></p>
+            <p class="exp-meta">May 2026 – Present</p>
+            <p>Ad Creative Intelligence Agent</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-logo"><img src="files/PaperFig/bytedance.png" alt="ByteDance logo"></div>
+          <div class="exp-body">
+            <h3>Research Intern</h3>
+            <p class="exp-org"><b>ByteDance</b></p>
+            <p class="exp-meta">Sep 2025 – Jan 2026</p>
+            <p>Unified multimodal understanding-generation modeling based on discrete diffusion models for parallel output.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-logo"><img src="files/PaperFig/images.jfif" alt="Huawei logo"></div>
+          <div class="exp-body">
+            <h3>Research Intern</h3>
+            <p class="exp-org"><b>Huawei</b></p>
+            <p class="exp-meta">Jul 2024 – Apr 2025</p>
+            <p>Robust segmentation foundation models for degraded visual inputs via generative latent-space enhancement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <h1 class="section-title">News</h1>
       <ul class="news-list">
-        <li>06/2026: I have one conference paper (FreqDirect) accepted by ECCV 2026 (first author).</li>
-        <li>12/2025: One first-author journal paper, <a href="https://arxiv.org/abs/2601.00537">VNS-SAM</a>, was accepted by IEEE Transactions on Image Processing.</li>
-        <li>10/2025: <a href="https://ieeexplore.ieee.org/document/10146336">HANet</a> was selected as an ESI Highly Cited Paper.</li>
-        <li>06/2025: I attended VALSE 2025 in Zhuhai and gave a poster presentation.</li>
-        <li>02/2025: My first-author paper <a href="https://arxiv.org/abs/2503.12507">GleSAM</a> was accepted by CVPR 2025.</li>
-        <li>12/2024: <a href="https://ieeexplore.ieee.org/document/10789225">SAM-COD+</a> was accepted by IEEE Transactions on Circuits and Systems for Video Technology.</li>
-        <li>07/2024: Two papers, <a href="https://arxiv.org/pdf/2408.10760">SAM-COD</a> and <a href="https://arxiv.org/pdf/2408.10777">P-COD</a>, were accepted by ECCV 2024.</li>
-        <li>04/2024: My first-author paper <a href="https://www.ijcai.org/proceedings/2024/448">P2P</a> was accepted by IJCAI 2024.</li>
-        <LI> 02/2024     I have one journal paper (co-first author) accepted by TGRS (中科院 Q1, IF=8.2). </LI>
-        <LI> 05/2023     I have one journal paper (<a href="https://ieeexplore.ieee.org/document/10146336">HANet</a>) (first author) accepted by TCSVT (中科院 Q1, IF=11.1). </LI>
-        <LI> 01/2023     I have one journal paper accepted by TNNLS (中科院 Q1, CCF-B, IF=10.4).  </LI>
+        <li><span class="news-date">Jun 2026</span><span>One conference paper (FreqDirect) accepted by <b>ECCV 2026</b> (first author, Top-tier Comference).</span></li>
+        <li><span class="news-date">Dec 2025</span><span>One first-author journal paper, <a href="https://arxiv.org/abs/2601.00537">VNS-SAM</a>, accepted by <b>IEEE TIP</b> (CCF-A, 中科院 Q1).</span></li>
+        <li><span class="news-date">Oct 2025</span><span><a href="https://ieeexplore.ieee.org/document/10146336">HANet</a> selected as an <b>ESI Highly Cited Paper</b>.</span></li>
+        <li><span class="news-date">Jun 2025</span><span>Attended <b>VALSE 2025</b> in Zhuhai and gave a poster presentation.</span></li>
+        <li><span class="news-date">Feb 2025</span><span>First-author paper <a href="https://arxiv.org/abs/2503.12507">GleSAM</a> accepted by <b>CVPR 2025</b> (CCF-A).</span></li>
+        <li><span class="news-date">Dec 2024</span><span><a href="https://ieeexplore.ieee.org/document/10789225">SAM-COD+</a> accepted by <b>IEEE TCSVT</b> (CCF-B, 中科院 Q1).</span></li>
+        <li><span class="news-date">Jul 2024</span><span>Two papers, <a href="https://arxiv.org/pdf/2408.10760">SAM-COD</a> and <a href="https://arxiv.org/pdf/2408.10777">P-COD</a>, accepted by <b>ECCV 2024</b> (CCF-B).</span></li>
+        <li><span class="news-date">Apr 2024</span><span>First-author paper <a href="https://www.ijcai.org/proceedings/2024/448">P2P</a> accepted by <b>IJCAI 2024</b> (CCF-A).</span></li>
+        <li><span class="news-date">Feb 2024</span><span>One journal paper (co-first author) accepted by <b>IEEE TGRS</b> (中科院 Q1, IF=8.2).</span></li>
+        <li><span class="news-date">May 2023</span><span>First-author paper <a href="https://ieeexplore.ieee.org/document/10146336">HANet</a> accepted by <b>IEEE TCSVT</b> (CCF-B, 中科院 Q1, IF=11.1).</span></li>
+        <li><span class="news-date">Jan 2023</span><span>One journal paper accepted by <b>IEEE TNNLS</b> (CCF-B, 中科院 Q1, IF=10.4).</span></li>
       </ul>
     </section>
 
-    <section class="section-block">
-      <h2>Publications</h2>
-      <table class="pub_table">
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/glesam.png" alt="GleSAM paper figure"></td>
-          <td class="pub_td2">
+    <section id="publications">
+      <h1 class="section-title">Publications</h1>
+      <div class="pub-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span>Selected publications below. For the full and up-to-date list, please visit my <a href="https://scholar.google.com/citations?hl=zh-CN&user=IhZcxSEAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>. &ast; denotes co-first author.</span>
+      </div>
+      
+      <div class="pub-list">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/Freqdirect.png" alt="FreqDirect paper figure">
+          <div class="pub-body">
+            <u><b>Guangqian Guo</b></u>, Aixi Ren, Xuehui Yu, Pengxu Wei, Yong Guo, Shan Gao
+            <span class="pub-title">Frequency Director: Learnable Mixture of Frequency Experts for Unified Concealed Scene Segmentation</span>
+            <span class="pub-venue">European Conference on Computer Vision (ECCV), 2026</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
+
+
+      <div class="pub-list">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/glesam.png" alt="GleSAM paper figure">
+          <div class="pub-body">
             <u><b>Guangqian Guo</b></u>, Yong Guo, Xuehui Yu, Wenbo Li, Yaoxing Wang, Shan Gao
-            <br><b>Segment Any-Quality Images with Generative Latent Space Enhancement</b>
-            <br>IEEE Computer Vision and Pattern Recognition Conference (<b>CVPR</b>), 2025
-            <br>[<a href="https://arxiv.org/abs/2503.12507">Paper</a>] [<a href="https://github.com/guangqian-guo/GleSAM">Code</a>]
-          </td>
-        </tr>
+            <span class="pub-title">Segment Any-Quality Images with Generative Latent Space Enhancement</span>
+            <span class="pub-venue">IEEE Computer Vision and Pattern Recognition Conference (CVPR), 2025</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://arxiv.org/abs/2503.12507" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="https://github.com/guangqian-guo/GleSAM" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/vns-sam.png" alt="VNS-SAM paper figure"></td>
-          <td class="pub_td2">
-            <u><b>Guangqian Guo</b></u>, Pengfei Chen, Yong Guo, Huafeng Chen, Boqiang Zahng, Shan Gao
-            <br><b>Boosting Segment Anything Model to Generalize Visually Non-Salient Scenarios</b>
-            <br>IEEE Transactions on Image Processing (<b>TIP</b>), 2025
-            <br>[<a href="">Paper</a>] [<a href="https://github.com/guangqian-guo/VNS-SAM">Code</a>]
-          </td>
-        </tr>
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/vns-sam.png" alt="VNS-SAM paper figure">
+          <div class="pub-body">
+            <u><b>Guangqian Guo</b></u>, Pengfei Chen, Yong Guo, Huafeng Chen, Boqiang Zhang, Shan Gao
+            <span class="pub-title">Boosting Segment Anything Model to Generalize Visually Non-Salient Scenarios</span>
+            <span class="pub-venue">IEEE Transactions on Image Processing (TIP), 2025</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="#" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="https://github.com/guangqian-guo/VNS-SAM" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/glesam-plus.png" alt="GleSAM+ paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/glesam-plus.png" alt="GleSAM+ paper figure">
+          <div class="pub-body">
             <u><b>Guangqian Guo</b></u>, Aixi Ren, Yong Guo, Xuehui Yu, Jiacheng Tian, Wenli Li, Yaoxing Wang, Shan Gao
-            <br><b>Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement</b>
-            <br>International Journal of Computer Vision (<b>IJCV</b>), major revision.
-            <br>[<a href="">Paper</a>] [<a href="https://github.com/guangqian-guo/GleSAM">Code</a>]
-          </td>
-        </tr>
+            <span class="pub-title">Towards Any-Quality Image Segmentation via Generative and Adaptive Latent Space Enhancement</span>
+            <span class="pub-venue">International Journal of Computer Vision (IJCV), major revision</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="#" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="https://github.com/guangqian-guo/GleSAM" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/p2p-ijcai.png" alt="P2P paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/p2p-ijcai.png" alt="P2P paper figure">
+          <div class="pub-body">
             <u><b>Guangqian Guo</b></u>, Dian Shao, Chenguang Zhu, Sha Meng, Xuan Wang, Shan Gao
-            <br><b>P2P: Transforming from Point Supervision to Explicit Visual Prompt for Object Detection and Segmentation</b>
-            <br>International Joint Conference on Artificial Intelligence (<b>IJCAI</b>), 2024
-            <br>[<a href="https://www.ijcai.org/proceedings/2024/448">Paper</a>] [<a href="https://github.com/guangqian-guo/P2P">Code</a>]
-          </td>
-        </tr>
+            <span class="pub-title">P2P: Transforming from Point Supervision to Explicit Visual Prompt for Object Detection and Segmentation</span>
+            <span class="pub-venue">International Joint Conference on Artificial Intelligence (IJCAI), 2024</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://www.ijcai.org/proceedings/2024/448" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="https://github.com/guangqian-guo/P2P" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/hanet.png" alt="HANet paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/hanet.png" alt="HANet paper figure">
+          <div class="pub-body">
             <u><b>Guangqian Guo</b></u>, Pengfei Chen, Xuehui Yu, Zhenjun Han, Qixiang Ye, Shan Gao
-            <br><b>HANet: Save the Tiny, Save the All: Hierarchical Activation Network for Tiny Object Detection</b>
-            <br>IEEE Transactions on Circuits and Systems for Video Technology (<b>TCSVT</b>), 2023
-            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10146336">Paper</a>] [<a href="https://github.com/guangqian-guo/HANet">Code</a>]
-          </td>
-        </tr>
+            <span class="pub-title">HANet: Save the Tiny, Save the All — Hierarchical Activation Network for Tiny Object Detection</span>
+            <span class="pub-venue">IEEE Transactions on Circuits and Systems for Video Technology (TCSVT), 2023</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://ieeexplore.ieee.org/abstract/document/10146336" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a class="pub-pill" href="https://github.com/guangqian-guo/HANet" target="_blank" rel="noopener noreferrer">Code</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/rpg.png" alt="RPG paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/rpg.png" alt="RPG paper figure">
+          <div class="pub-body">
             &ast;Chaowei Wang, &ast;<u><b>Guangqian Guo</b></u>, Chang Liu, Dian Shao, Shan Gao
-            <br><b>Effective Rotate: Learning Rotation-Robust Prototype for Aerial Object Detection</b>
-            <br>&ast; co-first author
-            <br>IEEE Transactions on Geoscience and Remote Sensing (<b>TGRS</b>), 2024
-            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10463070">Paper</a>]
-          </td>
-        </tr>
+            <span class="pub-title">Effective Rotate: Learning Rotation-Robust Prototype for Aerial Object Detection</span>
+            <span class="pub-venue">IEEE Transactions on Geoscience and Remote Sensing (TGRS), 2024</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://ieeexplore.ieee.org/abstract/document/10463070" target="_blank" rel="noopener noreferrer">Paper</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/hybrid-net.png" alt="Hybrid-Net paper figure"></td>
-          <td class="pub_td2">
-            Shan Gao (Ph.D. advisor), &ast;<u><b>Guangqian Guo</b></u>, Hanqiao Huang, C. L. Philip Chen
-            <br><b>Go Deep or Broad? Exploit Hybrid Network Architecture for Weakly Supervised Object Classification and Localization</b>
-            <br>&ast; student first author
-            <br>IEEE Transactions on Neural Networks and Learning Systems (<b>TNNLS</b>), 2023
-            <br>[<a href="https://ieeexplore.ieee.org/abstract/document/10005156">Paper</a>]
-          </td>
-        </tr>
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/hybrid-net.png" alt="Hybrid-Net paper figure">
+          <div class="pub-body">
+            Shan Gao, &ast;<u><b>Guangqian Guo</b></u>, Hanqiao Huang, C. L. Philip Chen
+            <span class="pub-title">Go Deep or Broad? Exploit Hybrid Network Architecture for Weakly Supervised Object Classification and Localization</span>
+            <span class="pub-venue">IEEE Transactions on Neural Networks and Learning Systems (TNNLS), 2023</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://ieeexplore.ieee.org/abstract/document/10005156" target="_blank" rel="noopener noreferrer">Paper</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/sam-cod.png" alt="SAM-COD paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/sam-cod.png" alt="SAM-COD paper figure">
+          <div class="pub-body">
             Huafeng Chen, Pengxu Wei, <u><b>Guangqian Guo</b></u>, Shan Gao
-            <br><b>SAM-COD: SAM-guided Unified Framework for Weakly-Supervised Camouflaged Object Detection</b>
-            <br>European Conference on Computer Vision (<b>ECCV</b>), 2024
-            <br>[<a href="https://arxiv.org/pdf/2408.10760">Paper</a>]
-          </td>
-        </tr>
+            <span class="pub-title">SAM-COD: SAM-guided Unified Framework for Weakly-Supervised Camouflaged Object Detection</span>
+            <span class="pub-venue">European Conference on Computer Vision (ECCV), 2024</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://arxiv.org/pdf/2408.10760" target="_blank" rel="noopener noreferrer">Paper</a>
+            </div>
+          </div>
+        </div>
 
-        <tr>
-          <td class="pub_td1"><img src="files/PaperFig/pcod.png" alt="P-COD paper figure"></td>
-          <td class="pub_td2">
+        <div class="pub-item">
+          <img class="pub-thumb" src="files/PaperFig/pcod.png" alt="P-COD paper figure">
+          <div class="pub-body">
             Huafeng Chen, Dian Shao, <u><b>Guangqian Guo</b></u>, Shan Gao
-            <br><b>Just a Hint: Point-Supervised Camouflaged Object Detection</b>
-            <br>European Conference on Computer Vision (<b>ECCV</b>), 2024
-            <br>[<a href="https://arxiv.org/pdf/2408.10777">Paper</a>]
-          </td>
-        </tr>
-      </table>
+            <span class="pub-title">Just a Hint: Point-Supervised Camouflaged Object Detection</span>
+            <span class="pub-venue">European Conference on Computer Vision (ECCV), 2024</span>
+            <div class="pub-links">
+              <a class="pub-pill" href="https://arxiv.org/pdf/2408.10777" target="_blank" rel="noopener noreferrer">Paper</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+  </main>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.setAttribute('data-theme', stored || (prefersDark ? 'dark' : 'light'));
+
+      const toggle = document.getElementById('themeToggle');
+      toggle.addEventListener('click', function () {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+
+      const links = document.querySelectorAll('.nav-links a[data-nav]');
+      const sections = Array.from(links)
+        .map(a => document.querySelector(a.getAttribute('href')))
+        .filter(Boolean);
+
+      function onScroll() {
+        const y = window.scrollY + 100;
+        let activeIdx = 0;
+        sections.forEach((s, i) => { if (s.offsetTop <= y) activeIdx = i; });
+        links.forEach((l, i) => l.classList.toggle('active', i === activeIdx));
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
